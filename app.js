@@ -1,4 +1,4 @@
-require('dotenv').config(); // import PORT number
+require('dotenv').config(); // import PORT
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
