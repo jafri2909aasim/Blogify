@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+    <title>Blog</title>
+</head>
+
+<style>
+    .main{
+        margin-top: 80px;
+    }
+
+    .comment-section{
+        margin-bottom: 80px;
+    }
+</style>
+
+<body>
+    <%- include('./partials/navbar') %>
+
+    <div class="container main">
+        <h1><%= blog.title %></h1>
+        <img src="<%= blog.coverImageURL %>" width="150px">
+        <p><%= blog.body %></p>
+        
+        <img src="<%= blog.createdBy.profileImageURL %>" width="150px">
+        <p><%= blog.createdBy.fullName %></p>
+    </div>
+
+    <div class="comment-section">
+        <div class="container mt-4">
+            <h4>Comments (<%= comments.length %>)</h4>
+        </div>
+        
+        <% if(locals.user) { %>
+            <div class="container">
+                <form action="/blog/comment/<%= blog._id %>" method="post">
+                    <div class="mt-2">
+                        <textarea type="text" rows="3" class="form-control" id="content" name="content" placeholder="Enter Your Comment..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Add</button>
+                </form>
+            </div>
+        <% } %>
+
+        <div class="container mt-4">
+            <% comments.forEach(comment => { %>
+                <div>
+                    <img src="<%= comment.createdBy.profileImageURL %>" width="150px">
+                    <%= comment.createdBy.fullName %>: <pre><%= comment.content %></pre>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+
+</html>

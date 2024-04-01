@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Add Blog</title>
+</head>
+
+<style>
+    .container{
+        margin-top: 80px;
+    }
+
+    .blog-box{
+        border: 5px ridge;
+        padding: 70px 30px 70px 30px;
+        border-radius: 100px;
+        background-color: #efba76;
+    }
+</style>
+
+<body>
+    <%- include('./partials/navbar') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <form action="/blog/saveblog" method="post" class="blog-box" enctype="multipart/form-data">
+                    <h2 class="text-center">Add Blog</h2>
+                    <div class="mt-4">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="mt-4">
+                        <label for="coverImage" class="form-label">Cover Image</label>
+                        <input type="file" class="form-control" id="coverImage" name="coverImage">
+                    </div>
+                    <div class="mt-4">
+                        <label for="body" class="form-label">Content</label>
+                        <textarea type="text" rows="4" class="form-control" id="body" name="body"></textarea>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Signin</title>
+</head>
+
+<style>
+    .container{
+        margin-top: 100px;
+    }
+
+    .signin-box{
+        border: 5px ridge;
+        padding: 70px 30px 70px 30px;
+        border-radius: 100px;
+        background-color: #efba76;
+    }
+</style>
+
+<body>
+    <%- include('./partials/navbar') %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+
+            <div class="col-md-6">
+                <form action="/user/signin" method="post" class="signin-box">
+                    <h2 class="text-center">Sign In</h2>
+                    <div class="mt-4">
+                        <!-- <label for="email" class="form-label">Email</label> -->
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="mt-4">
+                        <!-- <label for="password" class="form-label">Password</label> -->
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary mt-3">Sign In</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+
+</html>
