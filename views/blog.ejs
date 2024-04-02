@@ -8,7 +8,7 @@
 
 <style>
     .main{
-        margin-top: 80px;
+        margin-top: 60px;
     }
 
     .comment-section{
@@ -21,15 +21,17 @@
 
     <div class="container main">
         <h1><%= blog.title %></h1>
-        <img src="<%= blog.coverImageURL %>" width="150px">
-        <p><%= blog.body %></p>
+        <img src="<%= blog.coverImageURL %>" width="300px">
+        <p class="mt-3"><%= blog.body %></p>
         
-        <img src="<%= blog.createdBy.profileImageURL %>" width="150px">
-        <p><%= blog.createdBy.fullName %></p>
+        <div class="d-flex mt-5">
+            <img src="<%= blog.createdBy.profileImageURL %>" class="me-3" width="60px" style=" border-radius: 50%;">
+            <p class="my-auto"><%= blog.createdBy.fullName %> (Author)</p>
+        </div>
     </div>
 
     <div class="comment-section">
-        <div class="container mt-4">
+        <div class="container mt-5">
             <h4>Comments (<%= comments.length %>)</h4>
         </div>
         
@@ -44,11 +46,14 @@
             </div>
         <% } %>
 
-        <div class="container mt-4">
+        <div class="container mt-3">
             <% comments.forEach(comment => { %>
-                <div>
-                    <img src="<%= comment.createdBy.profileImageURL %>" width="150px">
-                    <%= comment.createdBy.fullName %>: <pre><%= comment.content %></pre>
+                <div class="d-flex mt-5">
+                    <img src="<%= comment.createdBy.profileImageURL %>" class="me-3" width="50px" style=" border-radius: 50%;">
+                    <p class="my-auto"><%= comment.createdBy.fullName %></p>
+                </div>
+                <div class="mt-1">
+                    <pre style="padding-left: 63px;"><%= comment.content %></pre>
                 </div>
             <% }); %>
         </div>

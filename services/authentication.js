@@ -5,7 +5,7 @@ const secret_key = process.env.secret_key;
 
 function createTokeForUser(user){
     const payload = {
-        userId: user.userId,
+        _id: user._id,
         email: user.email,
         password: user.password,
         fullName: user.fullName,

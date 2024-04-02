@@ -14,9 +14,9 @@ async function saveBlog(req, res) {
     const blog = await Blog.create({
         title,
         body,
-        createBy: req.user._id,
+        createdBy: req.user._id,
         coverImageURL: `/uploads/${req.file.filename}`
-    })
+    });
     return res.redirect(`/blog/${blog._id}`);
 }
 

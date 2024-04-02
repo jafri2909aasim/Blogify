@@ -11,6 +11,7 @@ async function createUser(req, res) {
         fullName,
         email,
         password,
+        profileImageURL: `/users/${req.file.filename}`
     });
 
     return res.redirect("signin");
@@ -24,7 +25,7 @@ async function signinAndGenerateToken(req, res) {
     const { email, password } = req.body;
 
     try {
-        const token = User.matchPasswordAndGenerateToken(email, password);
+        const token = await User.matchPasswordAndGenerateToken(email, password);
         return res.cookie("token", token).redirect("/");
     }
     catch(error) {
