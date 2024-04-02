@@ -1,9 +1,9 @@
-const { schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 const { createHmac, randomBytes } = require("crypto");
 const { createTokeForUser } = require("../services/authentication");
 
 
-const userSchema = new schema(
+const userSchema = new Schema(
     {
         fullName: {
             type: String,

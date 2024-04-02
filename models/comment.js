@@ -1,7 +1,7 @@
-const { schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 
-const commentSchema = new schema(
+const commentSchema = new Schema(
     {
         content: {
             type: String,
