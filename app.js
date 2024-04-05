@@ -1,4 +1,6 @@
 require('dotenv').config(); // import PORT
+const cluster = require("cluster");
+const os = require("os");
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -34,21 +36,32 @@ app.use(checkCookieAuthentication("token"));
 app.use(express.static(path.resolve("./public"))); // middleware to tell server that u can use static file/folder
 
 
-// routes
-app.get("/", async (req, res) => {
-    let allBlogs = await Blog.find({});
+const countCPUs = os.cpus().length;
 
-    res.render("home", {
-        user: req.user,
-        blogs: allBlogs
+// create CPUs instance/workers
+if(cluster.isPrimary){
+    for(let i=0; i<countCPUs; i++){
+        cluster.fork();
+    }
+} else {
+    // routes
+    app.get("/", async (req, res) => {
+        let allBlogs = await Blog.find({});
+
+        res.render("home", {
+            user: req.user,
+            blogs: allBlogs
+        });
+        
+        // console.log(`pid here ${process.pid}`);
     });
-});
 
-app.use("/user", userRoutes);
-app.use("/blog", blogRoutes);
+    app.use("/user", userRoutes);
+    app.use("/blog", blogRoutes);
 
 
-// port listening
-app.listen(PORT, (req, res) => {
-    console.log(`server started at port ${PORT}`);
-});
+    // port listening
+    app.listen(PORT, (req, res) => {
+        console.log(`server started at port ${PORT}`);
+    });
+}
